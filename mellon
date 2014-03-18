@@ -1,0 +1,9 @@
+#!/bin/bash
+export HTPASSWD_PATH=$(pwd)/.htpasswd
+#echo $HTPASSWD_PATH
+htpasswd -c $HTPASSWD_PATH ${1}
+echo "AuthName \"You need to login\"" >> .htaccess
+echo "AuthType Basic" >> .htaccess
+echo "AuthUserFile" $HTPASSWD_PATH >> .htaccess
+echo "AuthGroupFile /dev/null" >> .htaccess
+echo "require valid-user" >> .htaccess
